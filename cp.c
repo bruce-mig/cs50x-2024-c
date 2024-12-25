@@ -16,7 +16,6 @@ int main(int argc, char *argv[]) {
         return 1;
     }
     
-
     BYTE b;
 
     while (fread(&b, sizeof(b), 1, src) != 0)
