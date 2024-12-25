@@ -28,4 +28,4 @@ int main(int argc, char *argv[]) {
     fclose(src);
 }
 
-// ./cp meme.jpg backup.jpg
+// ./cp <src>.jpg <dst>.jpg
