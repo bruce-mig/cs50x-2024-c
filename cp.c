@@ -1,3 +1,5 @@
+// Implements custom cp command to copy files
+
 #include <stdio.h>
 #include <stdint.h>
 
