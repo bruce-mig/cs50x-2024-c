@@ -1,4 +1,5 @@
 // Implements a list of numbers using a linked list
+// The list will be sorted in ascending order as you insert each number
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -24,35 +25,32 @@ int main(int argc, char *argv[]) {
         n->number = number;
         n->next = NULL;
 
-        // If list is empty
-        if (list = NULL) {
-            // This node is the whole list
-            list = n;
-        }
-        // If number belongs at the beginning of list
-        else if (n->number < list->number){
+        // If list is empty or new node should be first
+        if (list == NULL || list->number >= number) {
             n->next = list;
             list = n;
-
-        }
-        // If number belongs later in list
-        else {
-            // Iterate over nodes in list
-            for (node *ptr = list; ptr != NULL; ptr = ptr->next) {
-                // If at end of list
-                if (ptr->next == NULL) {
-                    // Append node
-                    ptr->next = n;
-                    break;
-                }
-
-                // If in middle of list
-                if (n->number < ptr->next->number) {
-                    n->next = ptr->next;
-                    ptr->next = n;
-                    break;
-                }
+        } else {
+            // Find the correct position to insert the new node
+            node *current = list;
+            while (current->next != NULL && current->next->number < number) {
+                current = current->next;
             }
+            n->next = current->next;
+            current->next = n;
         }
     }
+
+    // Print the list
+    for (node *ptr = list; ptr != NULL; ptr = ptr->next) {
+        printf("%d\n", ptr->number);
+    }
+
+    // Free the list
+    while (list != NULL) {
+        node *tmp = list->next;
+        free(list);
+        list = tmp;
+    }
+
+    return 0;
 }
