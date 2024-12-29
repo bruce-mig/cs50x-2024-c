@@ -1,3 +1,5 @@
+// Each new number is inserted at the beginning of the list, so the list ends up in reverse order of the input arguments.
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -21,14 +23,21 @@ int main(int argc, char *argv[]) {
         n->number = number;
         n->next = list;
         list = n;
-
-        // Print whole list
-        node *ptr = list;
-        while (ptr != NULL) {
-            printf("%i\n", ptr->number);
-            ptr = ptr->next;
-        }
-        
     }
-    
+
+    // Print whole list
+    node *ptr = list;
+    while (ptr != NULL) {
+        printf("%i\n", ptr->number);
+        ptr = ptr->next;
+    }
+
+    // Free the list
+    while (list != NULL) {
+        node *tmp = list->next;
+        free(list);
+        list = tmp;
+    }
+
+    return 0;
 }
